@@ -18,7 +18,7 @@ provider "helm" {
         "--region",
         "ap-south-1",
         "--profile",
-        "mizan"
+        "mizan-ostad"
       ]
     }
   }
