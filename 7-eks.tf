@@ -1,7 +1,3 @@
-############################
-# 7-eks.tf
-############################
-
 data "aws_iam_role" "eks" {
   name = "${local.env}-${local.eks_name}-cluster"
 }
@@ -11,7 +7,6 @@ resource "aws_security_group" "eks_cluster_sg" {
   vpc_id = aws_vpc.main.id
 
   ingress {
-    description = "Allow HTTPS from anywhere (for testing)"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
