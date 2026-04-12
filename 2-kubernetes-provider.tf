@@ -17,7 +17,7 @@ provider "kubernetes" {
       "--region",
       "ap-south-1",
       "--profile",
-      "mizan23"
+      "mizan"
     ]
   }
 }

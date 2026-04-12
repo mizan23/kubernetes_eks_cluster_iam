@@ -3,5 +3,5 @@
 ############################
 provider "aws" {
   region = "ap-south-1"
-  profile = "mizan23"
+  profile = "mizan"
 }
