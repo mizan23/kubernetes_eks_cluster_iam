@@ -11,7 +11,8 @@ resource "helm_release" "metrics_server" {
   values = [
     yamlencode({
       args = [
-        "--kubelet-insecure-tls"
+        "--kubelet-insecure-tls",
+        "--kubelet-preferred-address-types=InternalIP"
       ]
     })
   ]
