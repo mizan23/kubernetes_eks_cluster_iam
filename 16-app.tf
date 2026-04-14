@@ -19,8 +19,8 @@ resource "helm_release" "app" {
   ]
 
   depends_on = [
-  aws_eks_node_group.general,
-  helm_release.alb_controller,
-  helm_release.metrics_server
-]
+    aws_eks_node_group.general,
+    helm_release.alb_controller,
+    helm_release.metrics_server
+  ]
 }
