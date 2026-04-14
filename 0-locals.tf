@@ -8,6 +8,13 @@ locals {
 }
 
 terraform {
+  backend "s3" {
+    bucket  = "mizan-eks-tfstate-bucket"
+    key     = "eks/dev/terraform.tfstate"
+    region  = "ap-south-1"
+    profile = "mizan-ostad"
+  }
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -23,4 +30,3 @@ terraform {
     }
   }
 }
-
