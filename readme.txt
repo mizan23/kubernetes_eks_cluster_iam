@@ -48,3 +48,6 @@ aws s3 ls s3://mizan-eks-tfstate-bucket/eks/dev/ --profile mizan-ostad
 You should see:
 
 terraform.tfstate
+
+
+aws eks update-kubeconfig --region us-east-1 --name dev-eks-cluster --profile mizan-ostad

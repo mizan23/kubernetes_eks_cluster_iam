@@ -1,6 +1,6 @@
 resource "helm_release" "app" {
   name  = "app"
-  chart = "${path.module}/../assignment/3-tier-app-terraform-jenkins/helm/app"
+  chart = "${path.module}/../3-tier-app-terraform-jenkins/helm/app"
 
   namespace        = "default"
   create_namespace = false
@@ -9,11 +9,11 @@ resource "helm_release" "app" {
     yamlencode({
       backend = {
         image = "mizan23/backend"
-        tag   = "latest"
+        tag   = var.image_tag
       }
       frontend = {
         image = "mizan23/frontend"
-        tag   = "latest"
+        tag   = var.image_tag
       }
     })
   ]

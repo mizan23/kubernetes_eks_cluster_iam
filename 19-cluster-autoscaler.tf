@@ -28,28 +28,37 @@ resource "aws_iam_role" "cluster_autoscaler" {
 # IAM POLICY FOR AUTOSCALER
 ############################
 
-resource "aws_iam_policy" "cluster_autoscaler_policy" {
-  name = "ClusterAutoscalerPolicy"
+# resource "aws_iam_policy" "cluster_autoscaler_policy" {
+#   name = "ClusterAutoscalerPolicy"
 
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "autoscaling:DescribeAutoScalingGroups",
-          "autoscaling:DescribeAutoScalingInstances",
-          "autoscaling:DescribeLaunchConfigurations",
-          "autoscaling:DescribeTags",
-          "autoscaling:SetDesiredCapacity",
-          "autoscaling:TerminateInstanceInAutoScalingGroup",
-          "ec2:DescribeLaunchTemplateVersions"
-        ]
-        Resource = "*"
-      }
-    ]
-  })
+#   policy = jsonencode({
+#     Version = "2012-10-17"
+#     Statement = [
+#       {
+#         Effect = "Allow"
+#         Action = [
+#           "autoscaling:DescribeAutoScalingGroups",
+#           "autoscaling:DescribeAutoScalingInstances",
+#           "autoscaling:DescribeLaunchConfigurations",
+#           "autoscaling:DescribeTags",
+#           "autoscaling:SetDesiredCapacity",
+#           "autoscaling:TerminateInstanceInAutoScalingGroup",
+#           "ec2:DescribeLaunchTemplateVersions"
+#         ]
+#         Resource = "*"
+#       }
+#     ]
+#   })
+# }
+
+############################
+# IAM POLICY FOR AUTOSCALER
+############################
+
+data "aws_iam_policy" "cluster_autoscaler_policy" {
+  name = "ClusterAutoscalerPolicy"
 }
+
 
 ############################
 # ATTACH POLICY
@@ -57,7 +66,8 @@ resource "aws_iam_policy" "cluster_autoscaler_policy" {
 
 resource "aws_iam_role_policy_attachment" "cluster_autoscaler_attach" {
   role       = aws_iam_role.cluster_autoscaler.name
-  policy_arn = aws_iam_policy.cluster_autoscaler_policy.arn
+#  policy_arn = aws_iam_policy.cluster_autoscaler_policy.arn
+  policy_arn = data.aws_iam_policy.cluster_autoscaler_policy.arn
 }
 
 ############################
@@ -91,7 +101,7 @@ resource "helm_release" "cluster_autoscaler" {
         clusterName = aws_eks_cluster.eks.name
       }
 
-      awsRegion = "ap-south-1"
+      awsRegion = "us-east-1"
 
       rbac = {
         serviceAccount = {

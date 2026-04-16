@@ -91,7 +91,7 @@ resource "helm_release" "alb_controller" {
   values = [
     yamlencode({
       clusterName = aws_eks_cluster.eks.name
-      region      = "ap-south-1"
+      region      = "us-east-1"
       vpcId       = aws_vpc.main.id
 
       serviceAccount = {

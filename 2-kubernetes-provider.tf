@@ -15,7 +15,7 @@ provider "kubernetes" {
       "--cluster-name",
       aws_eks_cluster.eks.name,
       "--region",
-      "ap-south-1",
+      "us-east-1",
       "--profile",
       "mizan-ostad"
     ]
